@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Combine
+import Foundation
+import PlaygroundSupport
+PlaygroundPage.current.needsIndefiniteExecution = true
+
+let runLoop = RunLoop.main
+
+//let subscription = runLoop.schedule(after: runLoop.now, interval: .seconds(1), tolerance: .milliseconds(100)) {
+//    print("Timer fired")
+//}
+//
+//
+//runLoop.schedule(after: .init(Date(timeIntervalSinceNow: 3.0))) { 
+//    subscription.cancel()    
+//}
+//
+//let publisher = Timer
+//    .publish(every: 1.0, on: .main, in: .common)
+//    .autoconnect()
+//    .scan(0) { counter, _ in
+//        counter + 1
+//    }.sink { counter in
+//        print("Counter is \(counter)")   
+//        if counter == 5 {
+//            publisher.cancel()
+//            
+//        }
+//    }
+
+let queue = DispatchQueue.main
+
+let source = PassthroughSubject&lt;Int, Never&gt;()
+
+var counter = 0
+
+let cancellable = queue.schedule(after: queue.now, interval: .seconds(1)) { 
+    source.send(counter)
+    counter += 1    
+}
+
+let subscription = source.sink { 
+    print("Timer emitted \($0)")
+}
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 1008}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>
